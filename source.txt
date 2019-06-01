@@ -1,0 +1,94 @@
+()
+Prgm
+© Written by Marzulli Alessandro 2016-2019
+© foxhead@airmail.cc
+
+© p=primo colore, s=secondo colore, m=terzo colore, t= colore tolleranza
+
+Local p,s,m,r,o,t
+
+Lbl start
+
+© Crea la finestra di dialogo
+Dialog
+  Title "CALCOLO “ RESISTENZA 4 BANDE"
+  Text "Inserisci i colori delle bande"
+  DropDown "1° banda",{"n/a","marrone","rosso","arancione","giallo","verde","blu","viola","grigio","bianco"},p
+  DropDown "2° banda",{"nero","marrone","rosso","arancione","giallo","verde","blu","viola","grigio","bianco"},s
+  DropDown "3° banda",{"nero","marrone","rosso","arancione","giallo","verde","blu","viola","grigio","bianco","oro","argento"},m
+  DropDown "4° banda",{"marrone","rosso","verde","blu","viola","grigio","oro","argento"},t
+EndDlog
+
+
+© Verifca che si sia premuto ok,termina se esc
+If ok=0 Then 
+  Goto end
+EndIf
+
+
+©calcolo il valore del resistore
+(p-1)*10+s-1r
+
+©Imposto l'unità di misura
+If ok=1 and mœ2 Then 
+
+  round(r*10^(m-1))r
+  "“"o
+
+ElseIf ok=1 and m>2 and mœ5 Then 
+  round(r*10^(m-4))r
+  "k“"o
+
+ElseIf ok=1 and m>5 and mœ8 Then 
+  round(r*10^(m-7))r
+  "M“"o
+
+ElseIf ok=1 and m>8 and mœ10 Then 
+  round(r*10^(m-10))r
+  "M“"o
+
+ElseIf ok=1 and m>10 Then 
+  round(r*10^(­(m-10)))r
+  "“"o
+EndIf
+
+©calcolo la tolleranza
+If t=1 Then 
+  "±1%"t
+
+ElseIf t=2 Then 
+  "±2%"t
+
+ElseIf t=3 Then 
+  "±0.5%"t
+
+ElseIf t=4 Then 
+  "±0.25%"t
+
+ElseIf t=5 Then 
+  "±0.1%"t
+
+ElseIf t=6 Then 
+  "±0.05%"t
+
+ElseIf t=7 Then 
+  "±5%"t
+
+Else
+  "±10%"t
+EndIf
+
+©Dialogo col valore in ohm
+Dialog
+  Title "LA TUA RESISTENZA"
+  Text string(r)&o&" "&t
+  Text ""
+  Text "Premi ENTER per editare"
+EndDlog
+
+If ok=1 Then 
+  Goto start
+EndIf
+
+Lbl end
+EndPrgm
